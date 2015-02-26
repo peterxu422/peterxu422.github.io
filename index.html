@@ -1,7 +1,322 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>Eisenbox</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+		 <script type="text/javascript" src="materialize/js/materialize.min.js"></script> 
+		<!--
+		<link type="text/css" rel="stylesheet" href="bower_components/materialize/bin/materialize.css"  media="screen,projection"/>
+      	<script type="text/javascript" src="bower_components/materialize/bin/materialize.js"></script>
+		-->
+		<script src="bower_components/html.sortable/src/html.sortable.js"></script>
+		<script src="db.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body>
+		<!-- Banner -->
+		<header>
+			<nav class="top-nav">
+				<div class="nav-wrapper light-blue">
+					<div class="project-title-wrapper">
+						<span class="project-title" id="project-title">Project Name</span>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Side bar -->
+		<ul id="slide-out" class="side-nav fixed">
+			<div class="button-container">
+				<a class="btn-floating btn-large waves-effect waves-light red" id="proj-add-btn"><i class="mdi-content-add"></i></a>
+			</div>
+			<li>
+				<div class="row">
+					
+					<a href="#!" class="project">
+						<div class="col s10">
+							<label class="proj-side-lbl">Test-Project</label>
+							<input type="text" class="proj-edit" value="Eisenbox" style="display: none;">
+						</div>
+						<div class="col s2 del-container">	
+							<i class="mdi-action-delete del-proj"></i>
+						</div>
+					</a>
+
+				</div>
+			</li>
+		</ul>
+		<a href="#" data-activates="slide-out" class="button-collapse"></a>
+
+
+	  	<!-- Content -->
+		<div id="container">
+			<table id="ebox">
+				<tr>
+					<td class="side-container">
+						<div class="side-hdr"><h5>Important</h5></div>
+					</td>
+					<td id="Q1" class="td-quad">
+						<div class="z-depth-1 quadrant">	
+							<div class="top-hdr">Urgent</div>
+							<div class="sub-hdr">Do it Now</div>
+
+							<div id="page-wrapper-q1" class="page-wrapper">
+								<form id="new-todo-form-q1" method="POST" action="#">
+									<div class="input-field">
+										<input type="text" name="new-todo-q1" class="quad-new-todo" id="new-todo-q1"  required>
+										<label for="Enter a todo item...">Enter a todo item...</label>
+									</div>
+								</form>
+								<ul id="todo-q1-items" class="collection todo-items-list"></ul>
+							</div>
+						</div>
+					</td>
+					<td id="Q2" class="td-quad">
+
+						<div class="z-depth-1 quadrant">
+							<div class="top-hdr">Not Urgent</div>
+							<div class="sub-hdr">Schedule Time</div>
+
+							<div id="page-wrapper-q2" class="page-wrapper">
+								<form id="new-todo-form-q2" method="POST" action="#">
+									<div class="input-field">
+										<input type="text" name="new-todo-q2" class="quad-new-todo" id="new-todo-q2" required>
+										<label for="Enter a todo item...">Enter a todo item...</label>
+									</div>
+								</form>
+								<ul id="todo-q2-items" class="collection todo-items-list"></ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="side-container">
+						<div class="side-hdr"><h5>Not Important</h5></div>
+					</td>
+					<td id="Q3" class="td-quad">
+						<div class="z-depth-1 quadrant">
+							<div class="sub-hdr">Delegate</div>
+
+							<div id="page-wrapper-q3" class="page-wrapper">
+								<form id="new-todo-form-q3" method="POST" action="#">
+									<div class="input-field">
+										<input type="text" name="new-todo-q3" class="quad-new-todo" id="new-todo-q3" required>
+										<label for="Enter a todo item...">Enter a todo item...</label>
+									</div>
+								</form>
+								<ul id="todo-q3-items" class="collection todo-items-list"></ul>
+							</div>
+						</div>
+					</td>
+					<td id="Q4" class="td-quad">
+						<div class="z-depth-1 quadrant">
+							<div class="sub-hdr">Eliminate</div>
+
+							<div id="page-wrapper-q4" class="page-wrapper">
+								<form id="new-todo-form-q4" method="POST" action="#">
+									<div class="input-field">
+										<input type="text" name="new-todo-q4" class="quad-new-todo" id="new-todo-q4" required>
+										<label for="Enter a todo item...">Enter a todo item...</label>
+									</div>
+								</form>
+								<ul id="todo-q4-items" class="collection todo-items-list">
+
+									<li id="todo-1424228999185" class="collection-item todo-li" draggable="true">
+										<div>
+											<input id="cb-1424228999185" type="checkbox" class="todo-checkbox" data-id="1424228999185">
+											<label for="cb-1424228999185" class="todo-display" style="display: inline;">Long todo items leak to the edge too much. Fix margins/padding issues on todo-items</label>
+											<input type="text" class="todo-edit" style="display: none;">
+											<a href="#!" class="secondary-content">
+												<i class="mdi-content-clear"></i>
+											</a>
+										</div>
+									</li>
+									<li id="todo-1424228999186" class="collection-item todo-li" draggable="true">
+										<div>
+											<input id="cb-1424228999186" type="checkbox" class="todo-checkbox" data-id="1424228999186">
+											<label for="cb-1424228999186" class="todo-display" style="display: inline;">Long todo items leak to the edge too much. Fix margins</label>
+											<input type="text" class="todo-edit" style="display: none;">
+											<a href="#!" class="secondary-content">	
+												<i class="mdi-content-clear"></i>	
+											</a>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+<!-- 	<ul id="test-list" class="collection connected">
+	    <li class="collection-item">Item 1</li>
+	    <li class="collection-item">Item 2</li>
+	    <li class="collection-item">Item 3</li>
+	    <li class="collection-item">Item 4</li>
+		<li id="todo-1424228999185" class="collection-item todo-li" draggable="true">
+			<div>
+				<input id="cb-1424228999185" type="checkbox" class="todo-checkbox" data-id="1424228999185">
+				<label for="cb-1424228999185" class="todo-display" style="display: inline;">Long todo items leak to the edge too much. Fix margins/padding issues on todo-items</label>
+				<input type="text" class="todo-edit" style="display: none;">
+				<a href="#!" class="secondary-content">
+					<i class="mdi-content-clear del-todo-icon"></i>
+				</a>
+			</div>
+		</li>
+		<li id="todo-1424228999186" class="collection-item todo-li" draggable="true">
+			<div>
+				<input id="cb-1424228999186" type="checkbox" class="todo-checkbox" data-id="1424228999186">
+				<label for="cb-1424228999186" class="todo-display" style="display: inline;">Long todo items leak to the edge too much. Fix margins</label>
+				<input type="text" class="todo-edit" style="display: none;">
+				<a href="#!" class="secondary-content">	
+					<i class="mdi-content-clear"></i>	
+				</a>
+			</div>
+		</li>
+	</ul>
+
+	<ul id="test-list2" class="collection connected">
+	    <li class="collection-item">Item 6</li>
+	    <li class="collection-item">Item 7</li>
+	    <li class="collection-item">Item 8</li>
+	    <li class="collection-item">Item 9</li>
+		<li id="todo-1424228999185" class="collection-item todo-li" draggable="true">
+			<div>
+				<input id="cb-1424228999185" type="checkbox" class="todo-checkbox" data-id="1424228999185">
+				<label for="cb-1424228999185" class="todo-display" style="display: inline;">Lmao holy shit</label>
+				<input type="text" class="todo-edit" style="display: none;">
+				<a href="#!" class="secondary-content">
+					<i class="mdi-content-clear del-todo-icon"></i>
+				</a>
+			</div>
+		</li>
+		<li id="todo-1424228999186" class="collection-item todo-li" draggable="true">
+			<div>
+				<input id="cb-1424228999186" type="checkbox" class="todo-checkbox" data-id="1424228999186">
+				<label for="cb-1424228999186" class="todo-display" style="display: inline;">omg this is funy</label>
+				<input type="text" class="todo-edit" style="display: none;">
+				<a href="#!" class="secondary-content">	
+					<i class="mdi-content-clear"></i>	
+				</a>
+			</div>
+		</li>
+	</ul> -->
+
+<!-- 
+      <ul class="collection with-header" style="width: 30%;">
+        <li class="collection-header"><h4>First Names</h4></li>
+        <li class="collection-item">
+        	<div>
+        		<input id="cb-1424228999187" type="checkbox" class="todo-checkbox" data-id="1424228999187">
+				<label for="cb-1424228999187" class="todo-display" >Long todo items leak to the edge too much. Fix margins blah blah blah blah sdfas erwer asdfasfe sfag ksdjel dijelkj </label>
+				<input type="text" class="todo-edit" style="display: none;">
+        		<a href="#!" class="secondary-content">
+        			<i class="secondary-content mdi-content-clear"></i>
+        		</a>
+        	</div>
+        </li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="mdi-content-clear"></i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="mdi-content-clear"></i></a></div></li>
+        <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
+      </ul>
+ -->
+<!-- 
+	<div class="row">
+        <div class="col s5 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href='#'>This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ -->
+
+				<!-- Todo List Queue -->
+				<!-- 
+				<td id="todo-quad">
+					<div id="page-wrapper">
+						<form id="new-todo-form" method="POST" action="#">
+							<input type="text" name="new-todo" id="new-todo" placeholder="Enter a todo item..." required>
+						</form>
+						<ul id="todo-items" class="todo-items-list">
+						</ul>
+					</div>
+				</td>
+				 -->
+<!-- 
+
+		<ul id="test-list">
+			<li><span><del>Need to do 1</del><span></li>
+			<li><span style="text-decoration:line-through">Need to do 2</span></li>
+			<li id="me1">Need to do 3</li>
+			<li>Need to do 4</li>
+			<li draggable="true" class="">
+	            <div class="view">
+	                <a class="destroy">✕</a>
+	                <label><input class="toggle" type="checkbox"></label>
+	                <span class="todo-display" id="span1">Hey</span>
+	                <input class="todo-edit" type="text" value="Hey" style="display:none">
+	            </div>
+            	
+        	</li>
+		</ul>
+
+		  <p>
+    <input type="checkbox" id="test5" />
+    <label for="test5">Red</label>
+  </p>
+  <p>
+    <input type="checkbox" id="test6" checked="checked" />
+    <label for="test6">Yellow</label>
+  </p>
+
+
+ 
+<div class="z-depth-1 quadrant">	
+  <ul>
+  	<li>
+  		<p>
+	  		<input type="checkbox"/>
+	  		<label for="task1">Task1</label>
+  		</p>
+  	</li>
+  	<li>
+  		<p>
+	  		<input type="checkbox"/>
+	  		<label for="task2">Task2</label>
+  		</p>
+  		
+  	</li>
+  	<li>
+  		<p>
+	  		<input type="checkbox" id="task3"/>
+	  		<label for="task3">Task3</label>
+  		</p>
+  	</li>
+  </ul>
+</div>
+
+-->
+  
+	</body>
 </html>
