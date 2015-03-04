@@ -234,3 +234,11 @@ li.sortable-placeholder {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #aaa;
 }
+
+/* Media Queries ---------------- */
+@media (max-width: 1000px) {
+	
+	#ebox {
+		width: 750px;
+	}
+}
