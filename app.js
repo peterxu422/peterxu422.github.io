@@ -24,61 +24,6 @@ window.onload = function() {
 
 	init();
 	
-/*	$("#todo-q1-items").droppable({
-		drop: function(e, ui) {
-			debugger
-			var item = ui.draggable[0];
-			var timestamp = parseInt(item.id.substring(5), 10); // 'todo-[timestamp]'
-			todoDB.changeQuad(timestamp, 1, refreshTodos);
-		}
-	});
-
-	$("#todo-q2-items").droppable({
-		drop: function(e, ui) {
-			var item = ui.draggable[0];
-			var timestamp = parseInt(item.id.substring(5), 10); // 'todo-[timestamp]'
-			todoDB.changeQuad(timestamp, 2, refreshTodos);
-		}
-	});
-
-	$("#todo-q3-items").droppable({
-		drop: function(e, ui) {
-			var item = ui.draggable[0];
-			var timestamp = parseInt(item.id.substring(5), 10); // 'todo-[timestamp]'
-			todoDB.changeQuad(timestamp, 3, refreshTodos);
-		}
-	});
-
-	$("#todo-q4-items").droppable({
-		drop: function(e, ui) {
-			var item = ui.draggable[0];
-			var timestamp = parseInt(item.id.substring(5), 10); // 'todo-[timestamp]'
-			todoDB.changeQuad(timestamp, 4, refreshTodos);
-		}
-	});*/
-
-	// Handle new todo item form submissions.
-	/*
-	newTodoForm.onsubmit = function() {
-		// Get the todo text.
-		var text = newTodoInput.value;
-
-		// Check to make sure the text is not blank (or just spaces).
-		if(text.replace(/ /g, '') != '') {
-			// Create the todo item.
-			// Passing callback func that executes refreshTodos to update UI when new item saved
-			todoDB.createTodo(text, 0, function(todo) {
-				refreshTodos();
-			});
-		}
-
-		// Reset the input field.
-		newTodoInput.value = '';
-
-		// Don't send the form. QUES: Why??
-		return false;
-	}
-*/
 	newTodoFormQ1.onsubmit = function() {
 		// Get the todo text.
 		var text = newTodoInputQ1.value;
@@ -178,28 +123,9 @@ function init() {
 	var projTitle = document.getElementById("project-title");
 	projTitle.innerHTML = todoDB.getCurrentProject();
 
-	// Q: Why does this execute earlier than refreshProjects callback in the todoDB.open in the beginning?
-	/*
-	for(var i=0; i < projectLinks.length; i++) {
-		projectLinks[i].addEventListener('click', function(e) {
-			var projName = e.target.innerHTML;
-			var projTitle = document.getElementById("project-title");
-			projTitle.innerHTML = projName;
-			todoDB.open(refreshTodos, function() {console.log("hey");}, projName);
-			console.log("Clicked on Project: " + projName);
-		});
-	}
-	*/
-
 	// Bind Handler to Add Project Button
 	var projAddBtn = document.getElementById("proj-add-btn");
 	projAddBtn.onclick = addProject;
-
-/*	var projLists = document.getElementsByClassName("project");
-	for(var i=0; i < projLists.length; i++) {
-		var lbl = projLists[i].querySelector("label");
-		lbl.ondblclick = editProject;
-	}*/
 }
 
 function updateTodoQuad(e, ui) {
